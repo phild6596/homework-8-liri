@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/phild6596/homework-8-liri/issues"
   },
-  "homepage": "https://github.com/phild6596/homework-8-liri#readme"
+  "homepage": "https://github.com/phild6596/homework-8-liri#readme",
+  "dependencies": {
+    "node": "^9.4.0",
+    "spotify-api": "0.0.0",
+    "twitter": "^1.7.1"
+  }
 }
