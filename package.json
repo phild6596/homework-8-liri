@@ -1,0 +1,20 @@
+{
+  "name": "homework-8-liri",
+  "version": "1.0.0",
+  "description": "Utilizing node.js to make an using the terminal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phild6596/homework-8-liri.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phild6596/homework-8-liri/issues"
+  },
+  "homepage": "https://github.com/phild6596/homework-8-liri#readme"
+}
