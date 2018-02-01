@@ -41,7 +41,33 @@ var tweets = function () {
         console.log(data);
     })
 }
-//here is the function to call OMDB
+//here is the function to call Spotify
+var artistName = function (artist) {
+    return artist.name;
+}
+
+var spotifySongs = function (songName) {
+    spotify.search({ type: 'track', query: songName}, function (error, data){
+        if (error) {
+            console.log('Error occured ' + error);
+            return;
+        }
+        if (songName === undefined) {
+            songName = 'Welcome to the jungle';
+        }
+        var songs = data.tracks.items;
+        var data = [];
+        for (let i = 0; i < songs.length; i++) {
+            data.push({
+                'Artist(s)': songs[i].artists.map(artistName),
+                'Song Name': songs[i].name,
+                'Song Preview': songs[i].preview_url,
+                'Album': songs[i].album.name
+            })  
+        }
+        console.log(data);
+    })
+}
 
 
 //here is the what it says function
@@ -51,8 +77,11 @@ var tweets = function () {
 var pick = function (caseData, functionData) {
     switch (caseData) {
         case 'my-tweets':
-        tweets();
-        break;
+            tweets();
+            break;
+        case 'spotify-this-song':
+            spotifySongs(functionData);
+            break;
     }
 }
 
