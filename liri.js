@@ -10,7 +10,16 @@ var spotify = new Spotify(keys.spotify);
 
 console.log(client);
 console.log(spotify);
-//here is the function to call twitter
+//Write to random.txt
+var randomTxt = function (data) {
+    fs.appendFile('random.txt', '\r\n\r\n');
+    fs.appendFile('random.txt', JSON.stringify(data), function (error) {
+        if (error) {
+            return error;
+            console.log(error);
+        }
+    });
+}
 
 
 //here is the function to call spotify
