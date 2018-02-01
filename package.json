@@ -18,8 +18,9 @@
   },
   "homepage": "https://github.com/phild6596/homework-8-liri#readme",
   "dependencies": {
+    "dotenv": "^5.0.0",
     "node": "^9.4.0",
-    "spotify-api": "0.0.0",
+    "node-spotify-api": "^1.0.7",
     "twitter": "^1.7.1"
   }
 }

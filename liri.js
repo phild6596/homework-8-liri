@@ -1,10 +1,15 @@
 require("dotenv").config();
+
 var fs = require('fs');
-var spotify = require('spotify');
-var twitter = require('twitter');
+var Spotify = require('node-spotify-api');
+var Twitter = require('twitter');
 var request = require('request');
 var keys = require('./keys.js');
+var client = new Twitter(keys.twitter);
+var spotify = new Spotify(keys.spotify);
 
+console.log(client);
+console.log(spotify);
 //here is the function to call twitter
 
 
