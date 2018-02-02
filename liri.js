@@ -57,7 +57,9 @@ var spotifySongs = function (songName) {
         }
         var songs = data.tracks.items;
         var data = [];
-        for (let i = 0; i < songs.length; i++) {
+        for (let i = 0; i < 1; i++) {
+            var foo = songs[i];
+            //console.log(foo);
             data.push({
                 'Artist(s)': songs[i].artists.map(artistName),
                 'Song Name': songs[i].name,
@@ -70,8 +72,33 @@ var spotifySongs = function (songName) {
 }
 
 
-//here is the what it says function
+//here is the OMDB functions
+var omdbMovies = function(movieName){
+    if (movieName === undefined){
+        movieName = 'Mr. Nobody';
+    }
 
+    var urlOmdb = 'http://www.omdbapi.com/?apikey=7ab0ddad&t=' + movieName + '&y=&plot=full&tomatoes-true&r=json';
+    request (urlOmdb, function (error, response, body) {
+        var data = [];
+        var jsonData = JSON.parse(body);
+        data.push({
+            'Title ': jsonData.Title,
+            'Year ': jsonData.Year,
+            'Rated': jsonData.Rated,
+            'IMDB Rating': jsonData.imdbRating,
+            'Country': jsonData.Country,
+            'Language': jsonData.Language,
+            'Plot': jsonData.Plot,
+            'Actors': jsonData.Actors,
+        })
+        console.log(data);
+        if (error) {
+            return error;
+            console.log(error);
+        }
+    })
+}
 
 //here is where the arguments are called
 var pick = function (caseData, functionData) {
@@ -81,6 +108,9 @@ var pick = function (caseData, functionData) {
             break;
         case 'spotify-this-song':
             spotifySongs(functionData);
+            break;
+        case 'movie-this':
+            omdbMovies(functionData);
             break;
     }
 }
