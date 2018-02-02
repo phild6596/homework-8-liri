@@ -8,9 +8,7 @@ var keys = require('./keys.js');
 var client = new Twitter(keys.twitter);
 var spotify = new Spotify(keys.spotify);
 
-//console.log(client);
-//console.log(spotify);
-//Write to random.txt
+
 var randomTxt = function (data) {
     fs.appendFile('random.txt', '\r\n\r\n');
     fs.appendFile('random.txt', JSON.stringify(data), function (error) {
@@ -27,20 +25,21 @@ var tweets = function () {
 
     client.get('statuses/user_timeline', parameters , function (error, tweets, response){
         var data = [];
+        if (error) {
+            console.log("Error: " + error);
+            return error;
+        }
         for (let i = 0; i < tweets.length; i++) {
             var newTweets = tweets[i];
-            //console.log(newTweets);
             data.push({
-                'Created at': tweets[i].created_at,
+                'Created on': tweets[i].created_at,
                 'Tweets ': tweets[i].text,
             });
-                if (error) {
-                return error;
-                }
         }
         console.log(data);
     })
 }
+
 //here is the function to call Spotify
 var artistName = function (artist) {
     return artist.name;
@@ -59,7 +58,6 @@ var spotifySongs = function (songName) {
         var data = [];
         for (let i = 0; i < 1; i++) {
             var foo = songs[i];
-            //console.log(foo);
             data.push({
                 'Artist(s)': songs[i].artists.map(artistName),
                 'Song Name': songs[i].name,
@@ -94,11 +92,25 @@ var omdbMovies = function(movieName){
         })
         console.log(data);
         if (error) {
-            return error;
             console.log(error);
+            return error;
         }
     })
 }
+
+//here is do-what-it-says
+function doWhatItSays() {
+    fs.readFile('random.txt', 'utf8', function(error, data){
+        var textArray = data.split(',');
+        console.log(data);
+        if (textArray.length == 2) {
+            pick(textArray[0], textArray[1]);
+        } else if (textArray.length == 1) {
+            pick(textArray[0]);
+        }
+    })
+}
+
 
 //here is where the arguments are called
 var pick = function (caseData, functionData) {
@@ -111,6 +123,9 @@ var pick = function (caseData, functionData) {
             break;
         case 'movie-this':
             omdbMovies(functionData);
+            break;
+        case 'do-what-it-says':
+            doWhatItSays();
             break;
     }
 }
