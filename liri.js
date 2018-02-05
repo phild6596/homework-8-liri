@@ -8,17 +8,6 @@ var keys = require('./keys.js');
 var client = new Twitter(keys.twitter);
 var spotify = new Spotify(keys.spotify);
 
-
-var randomTxt = function (data) {
-    fs.appendFile('random.txt', '\r\n\r\n');
-    fs.appendFile('random.txt', JSON.stringify(data), function (error) {
-        if (error) {
-            return error;
-            console.log(error);
-        }
-    });
-}
-
 //here is the function to call Twitter
 var tweets = function () {
     var parameters = { screen_name: 'Phlip_Deez', count:10 };
